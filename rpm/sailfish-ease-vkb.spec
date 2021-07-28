@@ -1,5 +1,5 @@
-Name: 		sailfish-ease-vkb
-Version: 	1.0.3
+Name:     sailfish-ease-vkb
+Version:  1.0.3
 Release: 	1
 Summary: 	The amazing messagease keyboard
 License: 	GPLv3+
@@ -15,17 +15,19 @@ This is a very special keyboard that perfectly combines the usual typing
 experience with few other swipe gestures that allows you to get rid of
 all your classical typos.
 
+%prep
+%setup -q -n %{name}-%{version}
+
 %install
 rm -rf %{buildroot}
-
 mkdir -p %{buildroot}/usr/share/maliit/plugins/com/jolla/%{name}
-cp -r %{name}/* %{buildroot}/usr/share/maliit/plugins/com/jolla/%{name}
+cp -r ../%{name}/qml/%{name}/* %{buildroot}/usr/share/maliit/plugins/com/jolla/%{name}
 
 mkdir -p %{buildroot}/usr/share/maliit/plugins/com/jolla/layouts
-cp -r layouts/* %{buildroot}/usr/share/maliit/plugins/com/jolla/layouts
+cp -r ../%{name}/qml/layouts/* %{buildroot}/usr/share/maliit/plugins/com/jolla/layouts
 
 mkdir -p %{buildroot}/usr/share/icons/hicolor/256x256/apps/
-cp %{name}.png %{buildroot}/usr/share/icons/hicolor/256x256/apps/
+cp ../%{name}/icons/%{name}.png %{buildroot}/usr/share/icons/hicolor/256x256/apps/
 
 
 %post
