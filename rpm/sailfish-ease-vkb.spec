@@ -39,6 +39,7 @@ systemctl-user restart maliit-server.service
 %defattr(-,root,root,-)
 %{_datadir}/maliit/plugins/com/jolla/%{name}
 %{_datadir}/maliit/plugins/com/jolla/layouts/ease_by_latin.qml
+%{_datadir}/maliit/plugins/com/jolla/layouts/ease_fr.qml
 %{_datadir}/maliit/plugins/com/jolla/layouts/ease_de.qml
 %{_datadir}/maliit/plugins/com/jolla/layouts/ease_en.qml
 %{_datadir}/maliit/plugins/com/jolla/layouts/ease_es.qml
