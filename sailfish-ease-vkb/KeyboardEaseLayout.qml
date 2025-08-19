@@ -108,7 +108,9 @@ KeyboardLayout {
         id: personalMultiPointTouchArea
         parent: keyboardLayout.parent
         z: keyboardLayout.z + 1
-        anchors.fill: parent
+        anchors.bottom: parent.bottom
+        width: parent.width
+        height: mylay.isLandsape ? row1.height * 7 : row1.height * 4
         enabled: keyboardLayout.visible && !useMouseEvents.value && keyboardLayout.componentSearchCompleted
         onPressed: keyboardLayout._handlePressed(touchPoints)
         onUpdated: keyboardLayout._handleUpdated(touchPoints)
@@ -147,7 +149,7 @@ KeyboardLayout {
             point.x = incomingPoint.x
             point.y = incomingPoint.y
 
-            var key = keyAt(point.startX, point.startY)
+            var key = keyAt(point.startX, point.startY + row1.height)
             if (ActivePoints2.array.length === 1 && keyboard.closeSwipeActive && pressTimer.running &&
                     (key === null || key.tempPoint === undefined)) {
                 var yDiff = point.y - point.startY
@@ -218,7 +220,8 @@ KeyboardLayout {
     }
 
     function _updatePressedKey(point) {
-        var key = keyAt(point.x, point.y)
+        var y = point.y + row1.height
+        var key = keyAt(point.x, y)
         if (key !== null && key.tempPoint !== undefined) {
             key.startPoint = key.tempPoint
             key.currentPoint = key.tempPoint
