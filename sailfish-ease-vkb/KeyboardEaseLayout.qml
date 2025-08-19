@@ -103,9 +103,6 @@ KeyboardLayout {
             }
         }
     }
-    QuickPick {
-        id: quickPick
-    }
 
     MultiPointTouchArea {
         id: personalMultiPointTouchArea

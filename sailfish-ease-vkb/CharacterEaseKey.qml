@@ -124,14 +124,6 @@ KeyBase {
             opacity: modelData !== "" ? 0.8 : attributes.inSymView2 || attributes.inSymView  ? 0.5 : 0
         }
     }
-//    Rectangle {
-//        anchors.centerIn: parent
-//        width: parent.width * 0.95
-//        height: parent.height * 0.98
-//        color: Theme.highlightBackgroundColor
-//        radius: height/6
-//        opacity: 0.1
-//    }
 
     Rectangle {
         id: highlightCircle
@@ -167,28 +159,29 @@ KeyBase {
                                                                                            : 180 - rotValue
     }
 
-//    Repeater{
-//        anchors.fill: parent
-//        model:ListModel{
-//            ListElement{horizontal: "right"; vertical:"top"; angles:90}
-//            ListElement{horizontal: "right"; vertical:"bottom"; angles:180}
-//            ListElement{horizontal: "left"; vertical:"top"; angles:-90}
-//            ListElement{horizontal: "left"; vertical:"bottom"; angles:180}
-//        }
-//        delegate: Repeater {
-//            model: [ 0, 90, 180, 270]
-//            delegate: Image {
-//                visible: parent.visible
-//                source: "../graphic-keyboard-highlight-top.png"
-//                anchors.right: horizontal==="right" ? parent.right : undefined
-//                anchors.left: horizontal==="left" ? parent.left : undefined
-//                anchors.top: vertical==="top" ? parent.top : parent.bottom
-//                transform: Rotation{origin.x: width/2; origin.y: 0; angle: modelData}
-//                // should scale based on pixel density
-//                width: geometry.scaleRatio >= 2 ? 2 : 1
-//                height: parent.height
-//                fillMode: Image.TileHorizontally// Math.abs(angles/90) === 1 ? Image.TileVertically :
-//            }
-//        }
-//    }
+    property bool showSeparator: false
+    Repeater{
+        anchors.fill: parent
+        model:ListModel{
+            ListElement{horizontal: "right"; vertical:"top"; angles:90}
+            ListElement{horizontal: "right"; vertical:"bottom"; angles:180}
+            ListElement{horizontal: "left"; vertical:"top"; angles:-90}
+            ListElement{horizontal: "left"; vertical:"bottom"; angles:180}
+        }
+        delegate: Repeater {
+            model: [ 0, 90, 180, 270]
+            delegate: Image {
+                visible: showSeparator
+                source: "../graphic-keyboard-highlight-top.png"
+                anchors.right: horizontal==="right" ? parent.right : undefined
+                anchors.left: horizontal==="left" ? parent.left : undefined
+                anchors.top: vertical==="top" ? parent.top : parent.bottom
+                transform: Rotation{origin.x: width/2; origin.y: 0; angle: modelData}
+                // should scale based on pixel density
+                width: geometry.scaleRatio >= 2 ? 2 : 1
+                height: parent.height
+                fillMode: Image.TileHorizontally// Math.abs(angles/90) === 1 ? Image.TileVertically :
+            }
+        }
+    }
 }
