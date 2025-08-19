@@ -68,7 +68,7 @@ FunctionKey {
         color: parent.pressed || attributes.inSymView2 ? Theme.highlightBackgroundColor : Theme.primaryColor
         opacity: parent.pressed || attributes.inSymView2 ? 0.6 : 0.17
         radius: geometry.keyRadius
-        anchors { fill: parent; margins: Theme.paddingMedium }
+        anchors {fill: parent; margins: Theme.paddingMedium}
         visible: !attributes.inSymView
     }
 

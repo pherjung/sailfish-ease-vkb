@@ -34,18 +34,17 @@ import Sailfish.Silica 1.0
 import ".."
 
 KeyBase {
-
     id: aCharKey
     height: parent.height
     showPopper: false
     property var keyValue: {
-                                "caption":        "",
-                                "captionShifted": "",
-                                "swipeCaption":        ["", "", "", "", "", "", "", ""],
-                                "swipeCaptionShifted": ["", "", "", "", "", "", "", ""],
-                                "swipeSpecial":        ["", "", "", "", "", "", "", ""],
-                                "symView": ""
-                            }
+        "caption":              "",
+        "captionShifted":       "",
+        "swipeCaption":        ["", "", "", "", "", "", "", ""],
+        "swipeCaptionShifted": ["", "", "", "", "", "", "", ""],
+        "swipeSpecial":        ["", "", "", "", "", "", "", ""],
+        "symView":              ""
+    }
 
     caption: keyValue["caption"]
     property string captionShifted: keyValue["captionShifted"]

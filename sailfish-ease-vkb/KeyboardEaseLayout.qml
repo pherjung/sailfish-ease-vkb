@@ -38,24 +38,30 @@ KeyboardLayout {
     property Item childToBeDisabled
     property bool componentSearchCompleted: false
     function searchParentsChild(){
-     console.info(keyboard)
+        console.info('searchParentsChild ' + keyboard)
         // Hack to find child MultiPointTouchArea of KeybardBase{}
         var multiPointTouchArea_idx = -1
         var languageSelectionPopup_idx = -1
         for (var i=0; i<keyboard.children.length; ++i){
-
-         // seaching for the child 'MultiPointTouchArea' by looking at all the properties a MultiPointTouchArea has
-         if ( (keyboard.children[i].maximumTouchPoints !== undefined) && (keyboard.children[i].minimumTouchPoints !== undefined) &&
-                    (keyboard.children[i].mouseEnabled !== undefined) && (keyboard.children[i].touchPoints !== undefined)) {
-                    console.info(keyboard.children[i])
-             multiPointTouchArea_idx = i;
-                    }
-         // seaching for the child 'LanguageSelectionPopup'
-         if ( (keyboard.children[i].activeCell !== undefined) && (keyboard.children[i].inInitialPosition !== undefined) &&
-                    (keyboard.children[i].pointId !== undefined) && (keyboard.children[i].opening !== undefined))
-             languageSelectionPopup_idx = i;
+            var maxTouchPoints = keyboard.children[i].maximumTouchPoints
+            var minTouchPoints = keyboard.children[i].minimumTouchPoints
+            var mouseEnabled = keyboard.children[i].mouseEnabled
+            var touchPoints = keyboard.children[i].touchPoints
+            if ((maxTouchPoints !== undefined) && (minTouchPoints !== undefined) && (mouseEnabled !== undefined) && (touchPoints !== undefined)) {
+                console.info(keyboard.children[i])
+                multiPointTouchArea_idx = i
+            }
+            // seaching for the child 'LanguageSelectionPopup'
+            var activeCell = keyboard.children[i].activeCell
+            var inInitialPosition = keyboard.children[i].inInitialPosition
+            var pointId = keyboard.children[i].pointId
+            var opening = keyboard.children[i].opening
+            if ((activeCell !== undefined) && (inInitialPosition !== undefined) && (pointId !== undefined) && (opening !== undefined)) {
+                languageSelectionPopup_idx = i;
+            }
         }
         if (languageSelectionPopup_idx !== -1) languageSelectionItem = keyboard.children[languageSelectionPopup_idx]
+
         if (multiPointTouchArea_idx !== -1) childToBeDisabled = keyboard.children[multiPointTouchArea_idx]
         if (multiPointTouchArea_idx !== -1 && languageSelectionPopup_idx !== -1){
             componentSearchCompleted = true
@@ -100,21 +106,21 @@ KeyboardLayout {
     QuickPick {
         id: quickPick
     }
+
     MultiPointTouchArea {
-        id:personalMultiPointTouchArea
+        id: personalMultiPointTouchArea
         parent: keyboardLayout.parent
         z: keyboardLayout.z + 1
         anchors.fill: parent
         enabled: keyboardLayout.visible && !useMouseEvents.value && keyboardLayout.componentSearchCompleted
-
         onPressed: keyboardLayout._handlePressed(touchPoints)
         onUpdated: keyboardLayout._handleUpdated(touchPoints)
         onReleased: keyboardLayout._handleReleased(touchPoints)
         onCanceled: keyboardLayout._handleCanceled(touchPoints)
 
     }
-    function _handlePressed(touchPoints) {
 
+    function _handlePressed(touchPoints) {
         if (languageSelectionItem.visible) {
             return
         }
@@ -402,7 +408,7 @@ KeyboardLayout {
     KeyBase {
         id: dummyBackspace
         key: Qt.Key_Backspace
-        keyType:KeyType.FunctionKey
+        keyType: KeyType.FunctionKey
     }
     KeyBase {
         // using one element for updating input handler

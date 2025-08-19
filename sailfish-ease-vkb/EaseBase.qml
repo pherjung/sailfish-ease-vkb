@@ -40,22 +40,22 @@ KeyboardEaseLayout {
     property real rowHeight: isLandscape ? 0.8 * parent.width/7 : 0.75 * parent.width/4
 
     accentMap: {
-            "a": {"´": "á", "^": "â", "¨": "ä", "`": "à", "°": "å", "~": "ã"},
-            "A": {"´": "Á", "^": "Â", "¨": "Ä", "`": "À", "°": "Å", "~": "Ã"},
-            "e": {"´": "é", "^": "ê", "¨": "ë", "`": "è"},
-            "E": {"´": "É", "^": "Ê", "¨": "Ë", "`": "È"},
-            "o": {"´": "ó", "^": "ô", "¨": "ö", "`": "ò",           "~": "õ"},
-            "O": {"´": "Ó", "^": "Ô", "¨": "Ö", "`": "Ò",           "~": "Õ"},
-            "i": {"´": "í", "^": "î", "¨": "ï", "`": "ì"},
-            "I": {"´": "Í", "^": "Î", "¨": "Ï", "`": "Ì"},
-            "u": {"´": "ú", "^": "û", "¨": "ü", "`": "ù"},
-            "U": {"´": "Ú", "^": "Û", "¨": "Ü", "`": "Ù"},
-            "y": {"´": "ý",           "¨": "ÿ"},
-            "Y": {"´": "Ý",           "¨": "Ϋ"},
-            "n": {                                                  "~": "ñ"},
-            "N": {                                                  "~": "Ñ"},
-            "c": {"¸": "ç"},
-            "C": {"¸": "Ç"}
+        "a": {"´": "á", "^": "â", "¨": "ä", "`": "à", "°": "å", "~": "ã"},
+        "A": {"´": "Á", "^": "Â", "¨": "Ä", "`": "À", "°": "Å", "~": "Ã"},
+        "e": {"´": "é", "^": "ê", "¨": "ë", "`": "è"},
+        "E": {"´": "É", "^": "Ê", "¨": "Ë", "`": "È"},
+        "o": {"´": "ó", "^": "ô", "¨": "ö", "`": "ò",           "~": "õ"},
+        "O": {"´": "Ó", "^": "Ô", "¨": "Ö", "`": "Ò",           "~": "Õ"},
+        "i": {"´": "í", "^": "î", "¨": "ï", "`": "ì"},
+        "I": {"´": "Í", "^": "Î", "¨": "Ï", "`": "Ì"},
+        "u": {"´": "ú", "^": "û", "¨": "ü", "`": "ù"},
+        "U": {"´": "Ú", "^": "Û", "¨": "Ü", "`": "Ù"},
+        "y": {"´": "ý",           "¨": "ÿ"},
+        "Y": {"´": "Ý",           "¨": "Ϋ"},
+        "n": {                                                  "~": "ñ"},
+        "N": {                                                  "~": "Ñ"},
+        "c": {"¸": "ç"},
+        "C": {"¸": "Ç"}
     }
 
     property var easeLayout: ({})
@@ -64,80 +64,82 @@ KeyboardEaseLayout {
     property alias specialCaption: special.label
 
     KeyboardEaseRow {
-        id:row1
+        id: row1
         height: rowHeight
         CharacterEaseKey {keyValue: easeLayout["topLeft"]}
         CharacterEaseKey {keyValue: easeLayout["top"] }
         CharacterEaseKey {keyValue: easeLayout["topRight"]}
 
         FunctionKey { // copied  EnterKey: i don't know why but it doesn't like as an element
-                  active: mylay.isLandscape
-                  height:parent.height
-                  icon.source: MInputMethodQuick.actionKeyOverride.icon
-                  caption:  MInputMethodQuick.actionKeyOverride.label
-                  key: Qt.Key_Return
-                  implicitWidth: symbol.width
-                  enabled: MInputMethodQuick.actionKeyOverride.enabled
-                  background.opacity: pressed ? 0.6 : MInputMethodQuick.actionKeyOverride.highlighted ? 0.4 : 0.17
+            active: mylay.isLandscape
+            height: parent.height
+            icon.source: MInputMethodQuick.actionKeyOverride.icon
+            caption:  MInputMethodQuick.actionKeyOverride.label
+            key: Qt.Key_Return
+            implicitWidth: symbol.width
+            enabled: MInputMethodQuick.actionKeyOverride.enabled
+            background.opacity: pressed ? 0.6 : MInputMethodQuick.actionKeyOverride.highlighted ? 0.4 : 0.17
         }
-        BackspaceKey { height:parent.height; implicitWidth: symbol.width; active: !mylay.isLandscape }
+        BackspaceKey {height: parent.height; implicitWidth: symbol.width; active: !mylay.isLandscape}
 
         CharacterEaseKey {keyValue: easeLayout["topLeft"];  active: mylay.isLandscape}
         CharacterEaseKey {keyValue: easeLayout["top"];      active: mylay.isLandscape}
         CharacterEaseKey {keyValue: easeLayout["topRight"]; active: mylay.isLandscape}
     }
+
     KeyboardEaseRow {
-        id:row2
+        id: row2
         height: rowHeight
-        CharacterEaseKey {keyValue: easeLayout["left"] }
+        CharacterEaseKey {keyValue: easeLayout["left"]}
         CharacterEaseKey {keyValue: easeLayout["center"]; showSeparator: true}
-        CharacterEaseKey {keyValue: easeLayout["right"] }
+        CharacterEaseKey {keyValue: easeLayout["right"]}
 
-        SymbolKey    { height:parent.height; active: mylay.isLandscape; caption: symbol.caption}
-        ShiftEaseKey { height:parent.height; implicitWidth: symbol.width;   active: !mylay.isLandscape }
+        SymbolKey    {height:parent.height; active: mylay.isLandscape; caption: symbol.caption}
+        ShiftEaseKey {height:parent.height; implicitWidth: symbol.width;   active: !mylay.isLandscape}
 
-        CharacterEaseKey {keyValue: easeLayout["left"];   active: mylay.isLandscape }
+        CharacterEaseKey {keyValue: easeLayout["left"];   active: mylay.isLandscape}
         CharacterEaseKey {keyValue: easeLayout["center"]; active: mylay.isLandscape; showSeparator: true}
-        CharacterEaseKey {keyValue: easeLayout["right"];  active: mylay.isLandscape }
+        CharacterEaseKey {keyValue: easeLayout["right"];  active: mylay.isLandscape}
     }
+
     KeyboardEaseRow {
-        id:row3
+        id: row3
         height: rowHeight
         CharacterEaseKey {keyValue: easeLayout["bottomLeft"]}
         CharacterEaseKey {keyValue: easeLayout["bottom"] }
         CharacterEaseKey {keyValue: easeLayout["bottomRight"]}
 
-        SymbolKey      {height:parent.height; id: symbol; active: !mylay.isLandscape }
+        SymbolKey      {height:parent.height; id: symbol; active: !mylay.isLandscape}
         SpecialEaseKey {height:parent.height; id: special; active: mylay.isLandscape; implicitWidth: symbol.width}
-
 
         CharacterEaseKey {keyValue: easeLayout["bottomLeft"];  active: mylay.isLandscape}
         CharacterEaseKey {keyValue: easeLayout["bottom"];      active: mylay.isLandscape}
         CharacterEaseKey {keyValue: easeLayout["bottomRight"]; active: mylay.isLandscape}
     } 
+
     KeyboardEaseRow {
-        id:row4
+        id: row4
         height: parent.width/4/1.75
         splitIndex: 3
         visible: portraitMode
-        SpecialEaseKey { height:parent.height; label: special.label}
+        SpecialEaseKey {height: parent.height; label: special.label}
 
-        SpacebarKey { height:parent.height }
-        EnterKey {height:parent.height; }
+        SpacebarKey {height: parent.height}
+        EnterKey {height: parent.height}
     }
 
     KeyboardEaseRow {
         id: landscapeBottomRow
         height: parent.width/7/2
-        visible:!portraitMode
+        visible: !portraitMode
 
-        SpacebarKey { height:parent.height; active: mylay.isLandscape }
+        SpacebarKey {height: parent.height; active: mylay.isLandscape}
         KeyBase {
             implicitWidth: symbol.width * 2.7
             clip: true
             active: mylay.isLandscape
             y:0
-            height:parent.height;
+            height: parent.height
             Loader {
                 id: topItem
                 sourceComponent: mylay.isLandscape && keyboard.inputHandler ? keyboard.inputHandler.topItem : null
@@ -145,8 +147,8 @@ KeyboardEaseLayout {
                 anchors.leftMargin: symbol.width / 2
             }
         }
-        ShiftEaseKey { height:parent.height; active: mylay.isLandscape }
-        BackspaceKey { height:parent.height; active: mylay.isLandscape }
-        SpacebarKey  { height:parent.height; active: mylay.isLandscape }
+        ShiftEaseKey {height: parent.height; active: mylay.isLandscape}
+        BackspaceKey {height: parent.height; active: mylay.isLandscape}
+        SpacebarKey  {height: parent.height; active: mylay.isLandscape}
     }
 }
